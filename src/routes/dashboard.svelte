@@ -14,7 +14,7 @@
   const logout = async () => {
     await firebase.auth().signOut();
     goto("/login");
-  }
+  };
 </script>
 
 <h1>This dashboard is protected!</h1>

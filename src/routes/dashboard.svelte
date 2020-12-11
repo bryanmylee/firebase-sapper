@@ -5,11 +5,8 @@
   import type Common from "@sapper/common";
   import firebase from "firebase/app";
 
-  let userToken: string | boolean = false;
-
   export const preload: Common.Preload = async function(this, page, session) {
-    userToken = session.userToken;
-    if (!userToken) {
+    if (!session.userToken) {
       return this.redirect(302, "/login");
     }
   };
@@ -21,5 +18,4 @@
 </script>
 
 <h1>This dashboard is protected!</h1>
-<p>Current user token: {userToken}</p>
 <button on:click={logout}>Logout</button>

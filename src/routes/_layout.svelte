@@ -12,15 +12,14 @@
     firebase.auth().onIdTokenChanged(async (user) => {
       try {
         if (!user) {
-          console.log(`User does not exist`);
-          $session.user = false;
+          console.log("User does not exist");
+          $session.userToken = false;
           return;
         }
-        const token = await user.getIdToken();
-        $session.user = token;
-        console.log(`User found and session set`);
+        $session.userToken = await user.getIdToken();
+        console.log("User found and token set");
       } catch (error) {
-        console.log(`Something went wrong`);
+        console.log("Something went wrong");
         $session.user = false;
         return;
       }

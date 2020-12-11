@@ -7,10 +7,9 @@
 
   const login = async () => {
     try {
-      firebase.auth().signInWithEmailAndPassword(email, password).then((res) => {
-        console.log(res);
-        goto('/dashboard');
-      })
+      const credentials = await firebase.auth().signInWithEmailAndPassword(email, password);
+      console.log(credentials);
+      goto("/dashboard");
     } catch (error) {
       let message = error.message ?? error;
       console.log(`Something went wrong: ${message}`);
